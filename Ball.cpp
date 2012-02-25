@@ -7,7 +7,7 @@ Ball::Ball()
     x = Width/2;
     y = Height/2;
     vx = 0;
-    vy = 200;
+    vy = 400;
 }
 
 void Ball::Draw()
@@ -25,6 +25,15 @@ void Ball::Draw()
 
 void Ball::Update(float DeltaTime)
 {
+    if (x+20>Width)
+    {
+        x = Width-20;
+        vx *= -1;
+    } else if (x-20<0)
+    {
+        x = 20;
+        vx *= -1;
+    }
     x += vx*DeltaTime;
     y += vy*DeltaTime;
 }

@@ -25,7 +25,10 @@ int main()
    NPad::SetScreen(Width,Height);
    NBall::SetScreen(Width,Height);
    NBall::Ball MyBall;
-   NPad::Paddle MyPaddle(60);
+   NPad::SetCollisions(&MyBall);
+   NPad::Paddle MyPaddle(Height-20,60);
+   NPad::Paddle EnemyPaddle(20,60);
+   MyPaddle.SetControl();
    float LastTime = glfwGetTime();
    while(true)
    {
@@ -38,9 +41,11 @@ int main()
        }
        MyBall.Update(DeltaTime);
        MyPaddle.Update(DeltaTime);
+       EnemyPaddle.Update(DeltaTime);
        glClear(GL_COLOR_BUFFER_BIT);
        MyBall.Draw();
        MyPaddle.Draw();
+       EnemyPaddle.Draw();
        glfwSwapBuffers();
    }
    return 0;
